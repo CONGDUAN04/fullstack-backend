@@ -1,0 +1,27 @@
+{
+  "name": "fullstack-backend",
+  "version": "1.0.0",
+  "description": "Cong Duan Fullstack Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CONGDUAN04/fullstack-backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "Cong Duan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CONGDUAN04/fullstack-backend/issues"
+  },
+  "homepage": "https://github.com/CONGDUAN04/fullstack-backend#readme",
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}
