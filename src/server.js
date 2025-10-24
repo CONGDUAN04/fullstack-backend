@@ -7,6 +7,9 @@ const connection = require('./config/database')
 const app = express() //app express\
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME
+//config req.body
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 //config template engine
 configViewEngine(app)
 //Khai báo route 
@@ -18,7 +21,6 @@ connection.query(
     'select * from Users',
     function (err, results, fields) {
         console.log("check results:", results)
-        console.log("check fields:", fields)
     }
 )
 app.listen(port, hostname, () => {

@@ -1,3 +1,73 @@
 .coca {
     width: 500px;
 }
+
+body {
+    background-color: #f9f9f9;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.topnav {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+}
+
+.topnav a {
+    text-decoration: none;
+    color: #222;
+    font-size: 16px;
+    padding: 8px 4px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.topnav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1.5px;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.topnav a:hover::after,
+.topnav a.active::after {
+    width: 100%;
+}
+
+@media (max-width: 200px) {
+    .topnav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 0;
+    }
+}
+
+.form-add-new {
+    width: 500px;
+    margin: 0 auto;
+    padding: 100px;
+}
+
+.input-group {
+    padding: 10px;
+}
+
+button {
+    margin: 10px;
+    cursor: pointer;
+}
