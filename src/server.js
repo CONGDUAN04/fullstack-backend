@@ -14,15 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 configViewEngine(app)
 //Khai báo route 
 app.use('/', webRoutes)
-//test connection
 
-// A simple SELECT query
-connection.query(
-    'select * from Users',
-    function (err, results, fields) {
-        console.log("check results:", results)
-    }
-)
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
 })

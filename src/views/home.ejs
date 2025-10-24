@@ -1,39 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Quản lý người dùng</title>
         <link rel="stylesheet" href="/css/styles.css" />
+        <style>
+            .table-container{
+                padding:15px 20px;
+            }
+            .title{
+                font-size: 25px;
+                font-weight: 600;
+                padding-bottom: 10px;
+            }
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            }
+
+            tr:hover {background-color:#ccc ;}
+        </style>
     </head>
     <body>
         <div class="topnav">
-            <a class="active" href="index.html">Home</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-            <a href="about.html">About</a>
+            <a class="active" href="/">Home</a>
+            <a href="/create">Create Users</a>
         </div>
-        <div class="form-add-new">
-            <form action="/test" method="post">
-                <fieldset>
-                    <legend>Add New User</legend>
-                    <div class="input-group">
-                        <label>Email:</label>
-                        <input type="text" id="emailId" name="email" />
-                    </div>
-                    <div class="input-group">
-                        <label>Name:</label>
-                        <input type="text" name="myname" />
-                    </div>
-                    <div class="input-group">
-                        <label>City:</label>
-                        <input type="text" name="city" />
-                    </div>
-                    <div>
-                        <button>Save</button>
-                    </div>
-                </fieldset>
-            </form>
+        <div class="table-container">
+            <div class="title">List Users</div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <% users.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.city %></td>
+                        <td>
+                            <a href="/update/<%= user.id %>">Edit</a>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+                </tr>
+            </table>
         </div>
     </body>
 </html>
