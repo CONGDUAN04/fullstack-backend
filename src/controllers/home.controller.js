@@ -11,7 +11,7 @@ const postCreateUser = async (req, res) => {
     const [result, fields] = await connection.query(
         `INSERT INTO Users (email,name,city)VALUES(?, ?, ?) `, [email, name, city],
     )
-    res.send("create User Succeed")
+    res.redirect('/')
 
 }
 const getCreatePage = (req, res) => {
@@ -26,10 +26,16 @@ const postUpdateUser = async (req, res) => {
     const userId = req.body.userId
     const { email, name, city } = req.body
     await updateUserById(email, city, name, userId)
-    res.send("Updated User Succeed")
+    res.redirect('/')
 }
-
-
+const postDeleteUser = async (req, res) => {
+    const id = req.params.id
+    console.log("Check id", id)
+    const [result, fields] = await connection.query(
+        `DELETE FROM Users WHERE id = ?`, [id]
+    )
+    res.redirect('/')
+}
 module.exports = {
-    getHomepage, postCreateUser, getCreatePage, getUpdatePage, postUpdateUser
+    getHomepage, postCreateUser, getCreatePage, getUpdatePage, postUpdateUser, postDeleteUser
 }

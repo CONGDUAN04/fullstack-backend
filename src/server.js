@@ -14,7 +14,8 @@ app.use(express.urlencoded({ extended: true }))
 configViewEngine(app)
 //Khai báo route 
 app.use('/', webRoutes)
-
+//test connection
+connection()
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
 })

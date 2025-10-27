@@ -3,36 +3,62 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Create User</title>
+        <title>Thêm người dùng</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <br>
-        <div class="topnav">
-            <a href="/">Home</a>
-            <a class="active" href="/create">Create User</a>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/create">Tạo người
+                                dùng</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="form-container">
+            <div class="form-card">
+                <form action="/create-user" method="post">
+                    <fieldset style="border: none; padding: 0; margin: 0;">
+                        <legend>Thêm người dùng mới</legend>
+                        <div class="input-group">
+                            <label>Email:</label>
+                            <input type="email" name="email"
+                                required />
+                        </div>
+                        <div class="input-group">
+                            <label for="nameId">Tên:</label>
+                            <input type="text" id="nameId" name="name"
+                                required />
+                        </div>
+                        <div class="input-group">
+                            <label for="cityId">Thành phố:</label>
+                            <input type="text" id="cityId" name="city"
+                                required />
+                        </div>
+                        <div>
+                            <button type="submit">
+                                <i class="bi bi-save"></i> Create New User
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-        <div class="form-add-new">
-            <form action="/create-user" method="post">
-                <fieldset>
-                    <legend>Add New User</legend>
-                    <div class="input-group">
-                        <label>Email:</label>
-                        <input type="text" id="emailId" name="email" />
-                    </div>
-                    <div class="input-group">
-                        <label>Name:</label>
-                        <input type="text" name="name" />
-                    </div>
-                    <div class="input-group">
-                        <label>City:</label>
-                        <input type="text" name="city" />
-                    </div>
-                    <div>
-                        <button>Save</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+        <footer>© 2025 - User Management Dashboard</footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
