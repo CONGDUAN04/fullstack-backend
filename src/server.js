@@ -13,9 +13,17 @@ app.use(express.urlencoded({ extended: true }))
 //config template engine
 configViewEngine(app)
 //Khai báo route 
-app.use('/', webRoutes)
-//test connection
-connection()
-app.listen(port, hostname, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.use('/', webRoutes);
+//js self running function
+(async () => {
+    //test connection
+    try {
+        await connection()
+        app.listen(port, hostname, () => {
+            console.log(`Backendapp listening on port ${port}`)
+        })
+    } catch (error) {
+        console.log("ERROR connect to DB:", error)
+    }
+})()
+
