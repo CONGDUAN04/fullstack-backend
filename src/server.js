@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express') //commonjs
 const configViewEngine = require('./config/viewEngine')
+const fileUpload = require("express-fileupload");
 const webRoutes = require('./routes/web')
 const apiRoutes = require('./routes/api')
 const connection = require('./config/database')
@@ -9,6 +10,10 @@ const mongoose = require("mongoose")
 const app = express() //app express\
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME
+//config file upload
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+}));
 //config req.body
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
