@@ -4,7 +4,6 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const mongoose = require("mongoose")
-const Kitten = require('./models/Kitten')
 // Get the client
 const app = express() //app express\
 const port = process.env.PORT || 8888;
@@ -16,9 +15,6 @@ app.use(express.urlencoded({ extended: true }))
 configViewEngine(app)
 //Khai báo route 
 app.use('/', webRoutes);
-//
-const silence = new Kitten({ name: 'model' });
-silence.save();
 //js self running function
 (async () => {
     //test connection
