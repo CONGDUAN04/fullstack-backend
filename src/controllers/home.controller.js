@@ -23,9 +23,9 @@ const getUpdatePage = async (req, res) => {
     res.render('edit.ejs', { user: user }) // x <- y
 }
 const postUpdateUser = async (req, res) => {
-    const userId = req.body.userId
-    const { email, name, city } = req.body
-    await User.updateOne({ _id: userId }, { email, name, city })
+    const userId = req.body.userId;
+    const { email, name, city } = req.body;
+    await User.updateOne({ _id: userId }, { email, name, city });
     res.redirect('/')
 }
 const postDeleteUser = async (req, res) => {
