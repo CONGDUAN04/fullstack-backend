@@ -11,9 +11,7 @@ const app = express() //app express\
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME
 //config file upload
-app.use(fileUpload({
-    limits: { fileSize: 50 * 1024 * 1024 },
-}));
+app.use(fileUpload())
 //config req.body
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -28,7 +26,7 @@ app.use('/api/', apiRoutes);
     try {
         await connection()
         app.listen(port, hostname, () => {
-            console.log(`Backendapp listening on port ${port}`)
+            console.log(`Backend app listening on port ${port}`)
         })
     } catch (error) {
         console.log("ERROR connect to DB:", error)
