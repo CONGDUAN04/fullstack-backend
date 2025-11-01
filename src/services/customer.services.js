@@ -15,3 +15,30 @@ export const createCustomerService = async (customerData) => {
         return null;
     }
 }
+export const createArrCustomerService = async (arr) => {
+    try {
+        const results = await Customer.insertMany(arr)
+        return results
+    } catch (error) {
+        console.log("check error", error)
+        return null;
+    }
+}
+export const getAllCustomersServices = async (arr) => {
+    try {
+        const result = await Customer.find({})
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+export const putUpdateCustomerServices = async (id, name, email, address) => {
+    try {
+        const result = await Customer.updateOne({ _id: id }, { name, email, address })
+        return result
+    } catch (error) {
+        console.log("check error", error)
+        return null;
+    }
+}
