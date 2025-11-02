@@ -51,3 +51,12 @@ export const deleteACustomerServices = async (id, name, email, address) => {
         return null;
     }
 }
+export const deleteArrCustomerServices = async (customerIds) => {
+    try {
+        const result = await Customer.delete({ _id: { $in: customerIds } })
+        return result
+    } catch (error) {
+        console.log("check error", error)
+        return null;
+    }
+}

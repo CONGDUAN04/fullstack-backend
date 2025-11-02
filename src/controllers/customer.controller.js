@@ -1,5 +1,5 @@
 import { uploadSingleFile } from "../services/file.services.js";
-import { createCustomerService, createArrCustomerService, getAllCustomersServices, putUpdateCustomerServices, deleteACustomerServices } from "../services/customer.services.js";
+import { createCustomerService, createArrCustomerService, getAllCustomersServices, putUpdateCustomerServices, deleteACustomerServices, deleteArrCustomerServices } from "../services/customer.services.js";
 export const postCreateCustomer = async (req, res) => {
     const { name, address, phone, email, description } = req.body
 
@@ -47,6 +47,14 @@ export const putUpdateCustomer = async (req, res) => {
 export const deleteACustomer = async (req, res) => {
     const { id } = req.body
     const result = await deleteACustomerServices(id)
+    return res.status(200).json({
+        ErrorCode: 0,
+        data: result
+    })
+}
+export const deleteArrCustomer = async (req, res) => {
+    const customerIds = req.body.customersId
+    const result = await deleteArrCustomerServices(customerIds)
     return res.status(200).json({
         ErrorCode: 0,
         data: result
