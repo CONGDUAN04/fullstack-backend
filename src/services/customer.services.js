@@ -42,3 +42,12 @@ export const putUpdateCustomerServices = async (id, name, email, address) => {
         return null;
     }
 }
+export const deleteACustomerServices = async (id, name, email, address) => {
+    try {
+        const result = await Customer.deleteById(id)
+        return result
+    } catch (error) {
+        console.log("check error", error)
+        return null;
+    }
+}
