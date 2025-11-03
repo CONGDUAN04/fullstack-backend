@@ -24,9 +24,16 @@ export const createArrCustomerService = async (arr) => {
         return null;
     }
 }
-export const getAllCustomersServices = async (arr) => {
+export const getAllCustomersServices = async (limit, page) => {
     try {
-        const result = await Customer.find({})
+        let result = null;
+        if (limit && page) {
+            let offset = (page - 1) * limit;
+            result = await Customer.find({}).skip(offset).limit(limit).exec();
+        }
+        else {
+            result = await Customer.find({})
+        }
         return result
     } catch (error) {
         console.log(error)

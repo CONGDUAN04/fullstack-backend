@@ -30,7 +30,13 @@ export const postCreateArrCustomer = async (req, res) => {
     }
 }
 export const getAllCustomers = async (req, res) => {
-    const result = await getAllCustomersServices()
+    let limit = req.query.limit;
+    let page = req.query.page;
+    let result = null;
+    if (limit && page) {
+        result = await getAllCustomersServices(limit, page);
+    } else
+        result = await getAllCustomersServices();
     return res.status(200).json({
         ErrorCode: 0,
         data: result
