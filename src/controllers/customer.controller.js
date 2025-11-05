@@ -30,8 +30,6 @@ export const postCreateArrCustomer = async (req, res) => {
     }
 }
 export const getAllCustomers = async (req, res) => {
-
-
     let limit = req.query.limit;
     let page = req.query.page;
     let name = req.query.name
