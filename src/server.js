@@ -7,6 +7,7 @@ import webRoutes from './routes/web.js';
 import apiRoutes from './routes/api.js';
 import projectRoutes from './routes/project.js';
 import customerRoutes from './routes/customer.js';
+import taskRoutes from './routes/task.js';
 import connection from './config/database.js';
 import { MongoClient } from 'mongodb';
 const app = express();
@@ -28,6 +29,7 @@ app.use('/', webRoutes);
 app.use('/api', apiRoutes);
 app.use('/api/v1', customerRoutes);
 app.use('/api/v2', projectRoutes);
+app.use('/api/v3', taskRoutes);
 // Self-invoking async function
 (async () => {
     try {
