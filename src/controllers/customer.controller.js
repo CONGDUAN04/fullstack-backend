@@ -1,19 +1,35 @@
 import { uploadSingleFile } from "../services/file.services.js";
 import { createCustomerService, createArrCustomerService, getAllCustomersServices, putUpdateCustomerServices, deleteACustomerServices, deleteArrCustomerServices } from "../services/customer.services.js";
+import Joi from "joi";
 export const postCreateCustomer = async (req, res) => {
     const { name, address, phone, email, description } = req.body
-
-    const file = req.files.image;
-    const results = await uploadSingleFile(file);
-    const imageUrl = results.path
-    const customerData = {
-        name, address, phone, email, description, image: imageUrl
-    }
-    const customer = await createCustomerService(customerData)
-    return res.status(200).json({
-        ErrorCode: 0,
-        data: customer
+    const schema = Joi.object({
+        name: Joi.string()
+            .pattern(/^[\p{L}0-9 ]+$/u)   // Cho phép kí tự tiếng Việt, số, khoảng trắng
+            .required(),
+        address: Joi.string(),
+        phone: Joi.string().pattern(new RegExp('^[0-9]{8,11}$')),
+        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),
+        description: Joi.string().max(500),
     })
+    const { error } = schema.validate(req.body, { abortEarly: false })
+    if (error) {
+        return res.status(200).json({
+            message: error,
+        })
+    } else {
+        const file = req.files.image;
+        const results = await uploadSingleFile(file);
+        const imageUrl = results.path
+        const customerData = {
+            name, address, phone, email, description, image: imageUrl
+        }
+        const customer = await createCustomerService(customerData)
+        return res.status(200).json({
+            ErrorCode: 0,
+            data: customer
+        })
+    }
 }
 export const postCreateArrCustomer = async (req, res) => {
     const customers = await createArrCustomerService(req.body.customers)
