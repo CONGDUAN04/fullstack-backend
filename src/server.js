@@ -43,8 +43,8 @@ app.use('/api/v3', taskRoutes);
         const dbName = process.env.DB_NAME;
         await client.connect();
         console.log('Connected successfully to server');
-        app.listen(port, hostname, () => {
-            console.log(`Backend app listening on http://${hostname}:${port}`);
+        app.listen(port, () => {
+            console.log("Server running on port " + port);
         });
     } catch (error) {
         console.error(' ERROR connect to DB:', error);
