@@ -2,7 +2,6 @@ import Task from "../models/task.js";
 import aqp from 'api-query-params';
 
 export const postCreateTaskServices = async (data) => {
-    console.log(data)
     if (data.type == "EMPTY TASK") {
         const result = await Task.create(data);
         return result
@@ -10,10 +9,10 @@ export const postCreateTaskServices = async (data) => {
 }
 export const getAllTaskServices = async (queryString) => {
     const page = queryString.page;
-    const { filter, limit } = aqp(queryString)
+    const { filter, limit, population } = aqp(queryString)
     delete filter.page;
     let offset = (page - 1) * limit;
-    const result = await Task.find(filter).skip(offset).limit(limit).exec();
+    const result = await Task.find(filter).populate(population).skip(offset).limit(limit).exec();
     return result;
 }
 export const deleteTaskServices = async (id) => {

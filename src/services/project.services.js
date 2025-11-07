@@ -30,6 +30,22 @@ export const createProjectService = async (data) => {
         const newResult = await myProject.save();
         return newResult
     }
+    if (data.type === "Add Task") {
+        const myProject = await Project.findById(data.projectId).exec();
+        const executingTaskIds = new Set(
+            myProject.tasks.map(task => task.toString())
+        );
+        for (let i = 0; i < data.taskArr.length; i++) {
+            const taskId = data.taskArr[i].toString();
+            if (!executingTaskIds.has(taskId)) {
+                myProject.usersInfo.push(data.taskArr[i])
+            } else {
+                return "Task đã tồn tại trong project"
+            }
+        }
+        const newResult = await myProject.save();
+        return newResult;
+    }
 }
 export const getProjectServices = async (queryString) => {
     const page = queryString.page;
